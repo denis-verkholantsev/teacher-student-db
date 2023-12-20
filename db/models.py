@@ -156,11 +156,15 @@ class Task(Base):
     }
 
 
-
 class Solution(Task):
     __tablename__ = "solution"
     id: Mapped[UUID] = mapped_column(ForeignKey("task.id"), primary_key=True)
     description: Mapped[str] = mapped_column(nullable=True)
+    created: Mapped[datetime] = mapped_column(server_default=func.now(), nullable=False)
+    updated: Mapped[datetime] = mapped_column(onupdate=func.now(), nullable=True)
+
+    ''' Not approved -> approved  '''
+    status: Mapped[str] = mapped_column(default="not approved", nullable=False)
 
     # one - to - many student -> solution
     student_id: Mapped[UUID] = mapped_column(ForeignKey("student.id", ondelete="CASCADE"), nullable=False)
@@ -184,7 +188,6 @@ class Exercise(Task):
     id: Mapped[UUID] = mapped_column(ForeignKey("task.id"), primary_key=True)
     title: Mapped[str] = mapped_column(nullable=True)
     description: Mapped[str] = mapped_column(nullable=True)
-    status: Mapped[str] = mapped_column(default="not started", nullable=False)
     created: Mapped[datetime] = mapped_column(server_default=func.now(), nullable=False)
     updated: Mapped[datetime] = mapped_column(onupdate=func.now(), nullable=True)
 

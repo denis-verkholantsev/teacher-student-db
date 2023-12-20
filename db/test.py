@@ -7,7 +7,7 @@ from sqlalchemy import select
 from models import Base
 from sys import argv
 
-URL="postgresql://postgres:1313@localhost:7654/postgres"
+URL="postgresql://postgres:1313@localhost:8765/postgres"
 
 def test(Base=Base, URL=URL):
     Base.metadata.drop_all(bind=create_engine(URL))
