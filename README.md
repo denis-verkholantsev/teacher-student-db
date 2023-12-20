@@ -71,7 +71,7 @@
 # СУБД
 PostgreSQL
 # Cхема базы данных
-[](/er_digram.pdf)
+![er](https://github.com/denis-verkholantsev/teacher-student-db/blob/main/er_diagram.pdf)
 # Язык программирования
 Python
 # Технологии разработки
