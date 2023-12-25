@@ -65,7 +65,9 @@
 # СУБД
 PostgreSQL
 # Cхема базы данных
+
 ![](https://github.com/denis-verkholantsev/teacher-student-db/blob/main/er_diagram.png)
+
 # Язык программирования
 Python (Flask+SQLAlchemy)
 # Технологии разработки
@@ -100,5 +102,9 @@ flask shell
 Введите команду
 ```
 db.create_all()
+```
+* Запустите приложение
+```
+flask run
 ```
 * Посетите [http://127.0.0.1:5000/apidocs/](http://127.0.0.1:5000/apidocs/) 
