@@ -71,7 +71,7 @@ PostgreSQL
 # Язык программирования
 Python (Flask+SQLAlchemy)
 # Технологии разработки
-Docker, SQLAlchemy
+Docker
 
 # Как использовать
 Предварительно убедитесь, что у вас установлены:
