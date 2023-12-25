@@ -47,17 +47,11 @@ def post_solution(exercise_id):
     db.session.add(solution)
     solution.files.update(files)
     db.session.commit()
-
-    # try:
-    #     db.session.commit()
-    # except IntegrityError as err:
-    #     err_message = str(err.orig) if err.orig else str(err.args[0]) if err.args else "Unknown error"
-    #     return jsonify({"message": err_message}), 403
     
     return jsonify({"id": solution.id}), 200
 
 
-@bp_solution.post("/<uuid:exercise_id>/<uuid:solution_id>")
+@bp_solution.get("/<uuid:exercise_id>/solutions/<uuid:solution_id>")
 @login_required
 @swag_from('doc/get_about.yaml')
 def get_about(exercise_id, solution_id):
@@ -134,7 +128,7 @@ def get_exercise_solution(exercise_id):
 
     else:
         if not student_id or student_id == current_user.id:
-            solutions = db.session.query(Solution).filter(Solution.exercise_id == exercise_id).filter(Student.id == current_user.id).all()
+            solutions = db.session.query(Solution).filter(Solution.exercise_id == exercise_id).filter(Solution.student_id == current_user.id).all()
         
     if not solutions:
         return jsonify({"solutions": []}), 200

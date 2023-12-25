@@ -1,5 +1,6 @@
 from werkzeug.routing import BaseConverter
 import uuid
+from flask import jsonify
 
 class UUIDConverter(BaseConverter):
 
@@ -7,7 +8,7 @@ class UUIDConverter(BaseConverter):
         try:
             return uuid.UUID(value)
         except ValueError:
-            raise NotImplementedError("UUID cannot convert")
+            return jsonify({"NotImplementedError", "UUID cannot convert"}), 403
     
     def to_url(self, value):
         return str(value)

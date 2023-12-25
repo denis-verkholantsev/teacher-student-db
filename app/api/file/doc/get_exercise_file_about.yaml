@@ -1,0 +1,39 @@
+Get about exercise's file
+---
+tags:
+  - File
+parameters:
+  - name: exercise_id
+    in: path
+    description: ID of the exercise
+    required: true
+    schema:
+      type: string
+      format: uuid
+  - name: file_id
+    in: path
+    description: ID of the file related to the exercise
+    required: true
+    schema:
+      type: string
+      format: uuid
+responses:
+  200:
+    description: File details retrieved successfully
+    schema:
+      type: object
+      properties:
+        filename:
+          type: string
+          description: Name of the file
+        filedata:
+          type: string
+          description: File data decoded as UTF-8 string
+  404:
+    description: Exercise, file, or user not found, or unauthorized access
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message

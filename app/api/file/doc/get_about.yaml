@@ -1,0 +1,40 @@
+Get about file
+---
+tags:
+  - File
+parameters:
+  - name: file_id
+    in: path
+    description: ID of the file to retrieve
+    required: true
+    schema:
+      type: string
+      format: uuid
+responses:
+  200:
+    description: File details retrieved successfully
+    schema:
+      type: object
+      properties:
+        filename:
+          type: string
+          description: Name of the file
+        filedata:
+          type: string
+          description: Base64 encoded file data
+  403:
+    description: No instances of UUID found
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+  404:
+    description: File not found or unauthorized access
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message

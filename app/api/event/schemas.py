@@ -41,7 +41,7 @@ class PostEventSchema(Schema):
         except ValueError as err:
             raise ValidationError(str(err))
         if start_datetime < datetime.today():
-            raise ValidationError(str(err))
+            raise ValidationError("start_time less then now")
 
     @validates('end')
     def validate_end(self, value):

@@ -65,7 +65,7 @@ def get_timetable():
         for e in student.events:
             if formated_end >= e.end and formated_start <= e.start:
                 events.append(e)
-        return jsonify({"events": [{"id": e.id, "title": e.title, "start": e.start, "end": e.end} for e in events]}), 200
+        return jsonify({"events": [{"id": e.id, "title": e.title, "start": e.start, "end": e.end, "teacher": e.teacher_id} for e in events]}), 200
     else:
         events = db.session.query(Event).filter(Event.teacher_id == current_user.id).filter(and_(
             Event.start >= formated_start,
@@ -76,7 +76,12 @@ def get_timetable():
     if not events:
         return jsonify({"events": {}}), 200
 
-    return jsonify({"events": [{"id": e.id, "title": e.title, "start": e.start, "end": e.end} for e in events]}), 200
+    return jsonify({"events": [{"id": e.id, 
+                                "title": e.title, 
+                                "start": e.start, 
+                                "end": e.end, 
+                                "students": [{"id": s.id, "username": s.username} for s in e.students]}
+                                for e in events]}), 200
     
     
     

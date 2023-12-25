@@ -37,7 +37,7 @@ class LoginUserSchema(Schema):
         validate=[
             validate.Length(min=8),
             validate.Regexp(
-                regex="[A-Za-z\d@$!%*?&]+",
+                regex="^(?=.*[A-Z]|.*[a-z])(?=.*\d)(?=.*[@$!%*?&_])[A-Za-z\d@$!%*?&_]+$",
                 error="Password must contain at least one lowercase letter, \
                         one number, and one special character."
             )
@@ -55,7 +55,7 @@ class RegisterUserSchema(Schema):
         validate=[
             validate.Length(min=8),
             validate.Regexp(
-                regex="[A-Za-z\d@$!%*?&]+",
+                regex="^(?=.*[A-Z]|.*[a-z])(?=.*\d)(?=.*[@$!%*?&_])[A-Za-z\d@$!%*?&_]+$",
                 error="Password must contain at least one lowercase letter, \
                     one number, and one special character."
             )
@@ -66,7 +66,7 @@ class RegisterUserSchema(Schema):
         validate=[
             validate.Length(min=3, max=30, error="Username must be between 3 and 30 characters."),
             validate.Regexp(
-                regex='^[a-zA-Z0-9_-]+$',  # Adjust the regex pattern based on your requirements
+                regex='^[a-zA-Z0-9_-]+$',
                 error="Invalid characters in username."
             )
         ]
@@ -131,7 +131,7 @@ class SearchUserSchema(Schema):
         validate=[
             validate.Length(min=3, max=30, error="Username must be between 3 and 30 characters."),
             validate.Regexp(
-                regex='^[a-zA-Z0-9_-]+$',  # Adjust the regex pattern based on your requirements
+                regex='^[a-zA-Z0-9_-]+$',
                 error="Invalid characters in username."
             )
         ]

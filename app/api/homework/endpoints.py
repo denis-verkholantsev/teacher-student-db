@@ -36,11 +36,18 @@ def post_homework():
     if homework_data.exercises:
         exercises = db.session.query(Exercise).filter(Exercise.teacher_id == current_user.id).filter(Exercise.id.in_(homework_data.exercises)).all()
     if homework_data.students:
-        students = db.session.query(Student).filter(Student.id == current_user.id).filter(Student.id.in_(homework_data.students)).all()
+        students = db.session.query(Student).filter(Student.id.in_(homework_data.students)).all()
 
+    formated_deadline = None
+    try:
+        if len(homework_data.deadline):
+            formated_deadline = datetime.strptime(homework_data.deadline, '%Y-%m-%dT%H:%M:%S')
+    except ValueError as err:
+        return jsonify({"message": "Value Error", "errors": str(err)}), 400
+    
     homework = Homework(title=homework_data.title, 
                         description=homework_data.description,
-                        deadline=datetime.strptime(homework_data.deadline, '%Y-%m-%dT%H:%M:%S')
+                        deadline=formated_deadline
                         )
     
     if files:
@@ -69,13 +76,11 @@ def post_homework():
 @login_required
 @swag_from('doc/get_about.yaml')
 def get_about(homework_id):
-    if not validate_id(homework_id):
-        return jsonify({"meassage": "No instances of UUID"}), 403
     
     homework = db.session.query(Homework).filter(Homework.id == homework_id).first()
 
     if current_user.type == "teacher":
-        if homework.teacher_id != current_user:
+        if homework.teacher_id != current_user.id:
             return jsonify({"message": "homework not found"}), 404
     else:
         if homework not in current_user.homeworks:

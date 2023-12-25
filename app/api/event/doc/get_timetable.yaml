@@ -42,6 +42,19 @@ responses:
                 type: string
                 format: date-time
                 description: End datetime of the event.
+              students:
+                type: array
+                properties:
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                        description: ID of the student
+                      username:
+                        type: string
+                        description: username of the student
   400:
     description: Bad Request response when the request data is invalid.
     schema:
