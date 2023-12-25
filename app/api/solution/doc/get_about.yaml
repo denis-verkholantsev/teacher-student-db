@@ -1,0 +1,56 @@
+Get info of specific solution
+---
+tags:
+ - Solution
+parameters:
+  - name: exercise_id
+    in: path
+    required: true
+    schema:
+      type: string
+      format: uuid
+  - name: solution_id
+    in: path
+    required: true
+    schema:
+      type: string
+      format: uuid
+responses:
+  200:
+    description: Successful response containing details about the specified solution.
+    schema:
+      type: object
+      properties:
+        author:
+          type: string
+          description: ID of the author (student) of the solution
+        description:
+          type: string
+          description: Description of the solution
+        created:
+          type: string
+          format: date-time
+          description: Date and time when the solution was created (formatted as YYYY-MM-DDTHH:MM:SS)
+        updated:
+          type: string
+          format: date-time
+          description: Date and time when the solution was last updated (formatted as YYYY-MM-DDTHH:MM:SS)
+        status:
+          type: string
+          description: Status of the solution
+  403:
+    description: Forbidden response due to issues with the UUID or access permissions.
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message indicating the issue.
+  404:
+    description: Not Found response when the specified exercise or solution is not found or inaccessible.
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message indicating exercise or solution not found.

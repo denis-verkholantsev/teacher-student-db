@@ -1,0 +1,38 @@
+Get details about a specific homework.
+
+This endpoint retrieves details about a specific homework based on the provided homework ID.
+
+---
+tags:
+  - Homework
+parameters:
+  - name: homework_id
+    in: path
+    required: true
+    schema:
+      type: string
+      format: uuid
+      description: ID of the homework to retrieve details about
+
+responses:
+  200:
+    description: Details of the requested homework
+    schema:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the homework
+        description:
+          type: string
+          description: Description of the homework
+        created:
+          type: string
+          format: date-time
+          description: Date and time when the homework was created
+        updated:
+          type: string
+          format: date-time
+          description: Date and time when the homework was last updated
+  404:
+        description: Homework not found or unauthorized access

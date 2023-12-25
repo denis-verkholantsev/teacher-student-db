@@ -1,0 +1,30 @@
+Create event
+---
+tags:
+  - Event
+parameters:
+  - in: body
+    name: event info
+    schema:
+      $ref: '#/definitions/PostEvent'
+responses:
+  200:
+    description: Successful response containing the ID of the created event.
+    schema:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: ID of the created event.
+  400:
+    description: Bad Request response when the request data is invalid.
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message indicating a validation or value error.
+        errors:
+          type: object
+          description: Detailed error messages for validation errors.

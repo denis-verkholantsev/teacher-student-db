@@ -1,0 +1,35 @@
+Create a new exercise.
+
+Endpoint to create a new exercise, accessible to authenticated teachers only.
+
+---
+tags:
+  - Exercise
+parameters:
+  - in: body
+    name: homework_info
+    description: Homework info for creating
+    schema:
+      $ref: '#/definitions/PostExercise'
+
+responses:
+  200:
+    description: Exercise successfully created.
+    schema:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: UUID
+  400:
+    description: Validation Error.
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        errors:
+          type: object
+          description: Detailed validation error messages.

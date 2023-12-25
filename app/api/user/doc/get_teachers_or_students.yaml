@@ -1,0 +1,16 @@
+Get IDs of students associated with the current teacher or teachers associated with the current student
+---
+tags:
+  - User
+responses:
+  200:
+    description: IDs of users retrieved successfully.
+    schema:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: result IDss

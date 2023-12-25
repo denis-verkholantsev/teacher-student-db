@@ -1,0 +1,15 @@
+Add relation between Teacher and Student
+---
+tags:
+  - User
+parameters:
+  - in: body
+    name: Student's id for relation
+    description: ID of the student to add.
+    schema: 
+      $ref: '#/definitions/AddRelationUser'
+responses:
+  200:
+    description: Student added successfully.
+  403:
+    description: Forbidden - student not found.

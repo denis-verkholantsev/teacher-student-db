@@ -1,0 +1,22 @@
+Get all exercises of the teacher
+---
+tags:
+  - Exercise
+responses:
+  200:
+    description: List of exercises belonging to the teacher
+    schema:
+      type: object
+      properties:
+        exercises:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: ID of the exercise.
+              title:
+                type: string
+                description: Title of the exercise

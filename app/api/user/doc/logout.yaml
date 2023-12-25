@@ -1,0 +1,9 @@
+Logout current user
+---
+tags:
+  - User
+responses:
+    200:
+      description: User successfully registered.
+    401:
+      description: Unauthorized

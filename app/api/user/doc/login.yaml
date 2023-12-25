@@ -1,0 +1,42 @@
+Login user
+---
+tags:
+  - User
+parameters:
+  - in: body
+    name: user_credentials
+    description: User credentials for login
+    schema: 
+      $ref: '#/definitions/LoginUser'
+responses:
+  200:
+    description: Successful login
+    schema:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Type of user
+        type:
+          type: string
+          description: Type of user
+  400:
+    description: Validation Error
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        errors:
+          type: object
+          description: Detailed validation error messages.
+  404:
+    description: User not found
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.

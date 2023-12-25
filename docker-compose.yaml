@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:16
+    container_name: web_db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 1313
+      POSTGRES_USER: postgres
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    ports:
+      - 7654:5432
+    expose: 
+      - 5432
+
+
+    

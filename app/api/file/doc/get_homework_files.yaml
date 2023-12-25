@@ -1,0 +1,45 @@
+Get files of specific homework
+---
+tags:
+ - File
+parameters:
+  - name: homework_id
+    in: path
+    required: true
+    schema:
+      type: string
+      format: uuid
+responses:
+  200:
+    description: Successful response containing files associated with the specified homework.
+    schema:
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: File ID
+              title:
+                type: string
+                description: File title or filename
+  403:
+    description: Forbidden response due to issues with the UUID.
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message indicating the issue.
+  404:
+    description: Not Found response when the specified homework is not found or inaccessible.
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message indicating homework not found.

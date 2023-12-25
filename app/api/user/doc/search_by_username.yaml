@@ -1,0 +1,19 @@
+Searches for a student by username.
+---
+tags:
+  - User
+parameters:
+  - in: query
+    name: username
+    required: true
+    type: string
+    description: Username of the student.
+responses:
+  200:
+    description: Successful search for the student.
+    schema:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the found student.

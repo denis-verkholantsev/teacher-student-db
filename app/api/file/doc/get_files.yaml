@@ -1,0 +1,22 @@
+Get all file of the user
+---
+tags:
+  - File
+responses:
+  200:
+    description: List of files belonging to the user
+    schema:
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: ID of the exercise.
+              filename:
+                type: string
+                description: Title of the exercise

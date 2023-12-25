@@ -1,0 +1,38 @@
+Approve solution
+---
+tags:
+ - Solution
+parameters:
+  - name: exercise_id
+    in: path
+    description: Unique identifier (UUID) of the exercise.
+    required: true
+    schema:
+      type: string
+      format: uuid
+  - name: solution_id
+    in: path
+    description: Unique identifier (UUID) of the solution.
+    required: true
+    schema:
+      type: string
+      format: uuid
+responses:
+  200:
+    description: Successful response. The status of the solution has been updated.
+  403:
+    description: Forbidden response due to issues with the UUID or access permissions.
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message indicating the issue.
+  404:
+    description: Not Found response when the specified exercise or solution is not found or inaccessible.
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message indicating exercise or solution not found.

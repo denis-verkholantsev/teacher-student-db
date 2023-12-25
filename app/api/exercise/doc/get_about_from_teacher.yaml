@@ -1,0 +1,49 @@
+Get details about a specific exercise for teacher.
+---
+tags:
+  - Exercise
+parameters:
+  - name: exercise_id
+    in: path
+    required: true
+    schema:
+      type: string
+      format: uuid
+      description: ID of the exercise to retrieve details about
+
+responses:
+  200:
+    description: Details of the requested exercise
+    schema:
+    type: object
+    properties:
+      title:
+        type: string
+        description: Title of the exercise
+      description:
+        type: string
+        description: Description of the exercise
+      created:
+        type: string
+        format: date-time
+        description: Date and time when the exercise was created
+      updated:
+        type: string
+        format: date-time
+        description: Date and time when the exercise was last updated
+      homeworks:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              description: ID of the homework related to the exercise
+            title:
+              type: string
+              description: Title of the related homework
+  403:
+    description: Invalid UUID format
+  404:
+    description: Exercise not found

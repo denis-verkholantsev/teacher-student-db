@@ -1,0 +1,35 @@
+Get user details by user ID.
+---
+tags:
+  - User
+parameters:
+  - in: path
+    name: user_id
+    schema:
+      type: string
+      format: uuid
+responses:
+  200:
+    description: User details retrieved successfully.
+    schema:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Username of the user.
+        email:
+          type: string
+          format: email
+          description: Email address of the user.
+        first_name:
+          type: string
+          description: First name of the user.
+        last_name:
+          type: string
+          description: Last name of the user.
+        birthdate:
+          type: string
+          format: date
+          description: Birthdate of the user.
+  404:
+    description: User not found.

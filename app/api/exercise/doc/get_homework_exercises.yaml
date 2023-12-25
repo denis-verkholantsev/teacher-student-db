@@ -1,0 +1,42 @@
+Get all exercises of the homework
+---
+tags:
+ - Exercise
+parameters:
+  - name: homework_id
+    in: path
+    required: true
+    schema:
+      type: string
+      format: uuid
+responses:
+  200:
+    description: Successful response containing exercises associated with the specified homework.
+    schema:
+      type: object
+      properties:
+        exercises:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: Exercise ID
+  403:
+    description: Forbidden response due to issues with the UUID.
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message indicating the issue.
+  404:
+    description: Not Found response when the specified homework is not found or inaccessible.
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message indicating homework not found.

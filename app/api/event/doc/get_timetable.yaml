@@ -1,0 +1,55 @@
+Get timetable
+---
+tags:
+  - Event
+parameters:
+  - in: query
+    name: start
+    schema:
+      type: string
+      format: date-time
+      description: Start datetime for the events search in YYYY-MM-DDTHH:MM:SS format.
+  - in: query
+    name: end
+    schema:
+      type: string
+      format: date-time
+      description: End datetime for the events search in YYYY-MM-DDTHH:MM:SS format.
+    
+responses:
+  200:
+    description: Successful response containing the list of events within the specified time range.
+    schema:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: ID of the event.
+              title:
+                type: string
+                description: Title of the event.
+              start:
+                type: string
+                format: date-time
+                description: Start datetime of the event.
+              end:
+                type: string
+                format: date-time
+                description: End datetime of the event.
+  400:
+    description: Bad Request response when the request data is invalid.
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message indicating a validation or value error.
+        errors:
+          type: object
+          description: Detailed error messages for validation errors.

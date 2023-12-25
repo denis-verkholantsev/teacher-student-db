@@ -1,0 +1,33 @@
+Registers a new user.
+
+This endpoint allows registration of a new user, either a student or a teacher.
+
+---
+tags:
+  - User
+parameters:
+  - in: body
+    name: user_credentials
+    description: User credentials for registration
+    schema: 
+      $ref: '#/definitions/RegisterUser'
+responses:
+    200:
+      description: User successfully registered.
+      schema:
+        type: object
+        properties:
+          message:
+            type: string
+            description: Success message (e.g., "User successfully registered.").
+    400:
+      description: Validation or Integrity Error.
+      schema:
+        type: object
+        properties:
+          message:
+            type: string
+            description: Error message indicating validation or integrity error.
+          errors:
+            type: object
+            description: Detailed error messages.

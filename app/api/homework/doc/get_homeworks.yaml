@@ -1,0 +1,22 @@
+Get all homeworks belonging to the current user.
+---
+tags:
+  - Homework
+responses:
+  200:
+    description: List of homeworks belonging to the user
+    schema:
+      type: object
+      properties:
+        homeworks:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: ID of the homework.
+              title:
+                type: string
+                description: Title of the homework

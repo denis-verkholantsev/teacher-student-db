@@ -1,0 +1,61 @@
+Get solutions of specific exercise
+---
+tags:
+ - Solution
+parameters:
+  - name: exercise_id
+    in: path
+    required: true
+    schema:
+      type: string
+      format: uuid
+  - name: student_id
+    in: query
+    description: Optional. ID of the student for filtering solutions (only accessible by teachers).
+    required: false
+    schema:
+      type: string
+      format: uuid
+responses:
+  200:
+    description: Successful response containing solutions associated with the specified exercise.
+    schema:
+      type: object
+      properties:
+        solutions:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: Solution ID
+              author:
+                type: string
+                format: uuid
+                description: ID of the author (student) of the solution
+  400:
+    description: Bad Request response when there are validation errors in the request parameters.
+    schema:
+      type: object
+      properties:
+        ValidationError:
+          type: object
+          description: Error messages related to validation errors.
+  403:
+    description: Forbidden response due to issues with the UUID or access permissions.
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message indicating the issue.
+  404:
+    description: Not Found response when the specified exercise is not found or inaccessible.
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message indicating exercise not found.

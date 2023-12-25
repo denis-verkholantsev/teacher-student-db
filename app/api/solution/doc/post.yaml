@@ -1,0 +1,37 @@
+Submit a solution for a specific exercise.
+---
+tags:
+  - Solution
+parameters:
+  - in: path
+    name: exercise_id
+    schema:
+      type: string
+      format: uuid
+    description: The ID of the exercise for which the solution is being submitted.
+  - in: body
+    name: solution_info
+    description: Solution info for creating
+    schema:
+      $ref: '#/definitions/PostSolution'
+responses:
+  200:
+    description: Successfully submitted the solution.
+    schema:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: ID of the submitted solution.
+  400:
+    description: Validation Error.
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        errors:
+          type: object
+          description: Detailed validation error messages.

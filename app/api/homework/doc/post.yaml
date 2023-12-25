@@ -1,0 +1,32 @@
+Create a new homework assignment.
+This endpoint allows a teacher to create a new homework assignment.
+---
+tags:
+  - Homework
+parameters:
+  - in: body
+    name: homework_info
+    description: Homework info for creating
+    schema:
+      $ref: '#/definitions/PostHomework'
+responses:
+  200:
+    description: Successful creation of a new homework assignment.
+    schema:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: id of created homework
+  400:
+    description: Validation Error
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        errors:
+          type: object
+          description: Detailed validation error messages.
